@@ -7,7 +7,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 # creating a pdf file object
 pdfFilename = 'mpesa_statement.pdf'
 password = "pass"
-pdf = pikepdf.open(pdfFilename, password=password,  allow_overwriting_input=True)
+pdf = pikepdf.open(pdfFilename, password=password, allow_overwriting_input=True)
 pdf.save(pdfFilename)
 
 # Create a PdfFileWriter object
@@ -20,10 +20,10 @@ pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 
 file = PdfFileReader(pdfFilename)
 
-# Check if the opened file is actually Encrypted
+# Check if the opened file is still Encrypted
 if file.isEncrypted:
 
-    # If encrypted, decrypt it with the password
+    # If encrypted, decrypt it with the password using PyPDF
     file.decrypt(password)
 
     # Now, the file has been unlocked.
@@ -45,7 +45,7 @@ if file.isEncrypted:
     # Print success message when Done
     print("File decrypted Successfully.")
 else:
-
+    # If pikepdf did her job well, the file wont be encrypted
     # If file is not encrypted, print the
     # message
     print("File already decrypted.")
